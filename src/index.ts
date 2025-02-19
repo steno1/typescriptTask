@@ -29,10 +29,10 @@ export function logPerson(person: Person) {
     );
 }
 
-// Utility type to remove "type" property from User and Admin
+
 type FilterCriteria<T extends Person> = Partial<Omit<T, 'type'>>;
 
-// Function with improved typings
+
 export function filterPersons<T extends Person>(
     persons: Person[],
     personType: T['type'],
