@@ -1,6 +1,6 @@
 # 🚀 TypeScript User Filtering Task
 
-This project implements a **TypeScript function** that filters clients and managers based on their type and specific criteria such as age and profession/department.
+This project implements a **TypeScript function** that filters users and admins based on their type and specific criteria such as age and profession/department.
 
 ## 📂 Project Structure
 ```
@@ -38,15 +38,15 @@ node dist/index.js
 
 ## 📝 Example Output
 ```
-🔍 Clients aged 22:
-👤 Onu Princeley, 22, 🛠️ Designer
-👤 Inegbu Vivian, 22, 🛠️ Developer
+🔍 Users aged 22:
+👤 Onu Princeley, 22, 💼 Designer
+👤 Inegbu Vivian, 22, 💼 Developer
 
-🔍 Managers aged 22:
-💼 Odanwu Emmanuel, 22, 🔍 Security
+🔍 Admins aged 22:
+🛠️ Odanwu Emmanuel, 22, 🔍 Security
 ```
 
 ## 📌 Features
 ✅ TypeScript-based filtering logic  
-✅ Supports dynamic filtering for both clients and managers  
+✅ Supports dynamic filtering for both users and admins  
 ✅ CLI Output with improved readability using emojis and formatting
