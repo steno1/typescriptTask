@@ -18,7 +18,7 @@ typescript-filter-task/
 ### 1️⃣ Clone the Repository  
 ```sh
 git clone https://github.com/steno1/typescriptTask.git
-cd typescript-filter-task
+cd typescriptTask
 ```
 
 ### 2️⃣ Install Dependencies
