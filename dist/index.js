@@ -1,29 +1,24 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.adminsOfAge23 = exports.usersOfAge23 = exports.persons = void 0;
-exports.logPerson = logPerson;
-exports.filterPersons = filterPersons;
-exports.persons = [
-    { type: 'user', name: 'Max Mustermann', age: 25, occupation: 'Chimney sweep' },
-    { type: 'admin', name: 'Jane Doe', age: 32, role: 'Administrator' },
-    { type: 'user', name: 'Kate Müller', age: 23, occupation: 'Astronaut' },
-    { type: 'admin', name: 'Bruce Willis', age: 64, role: 'World saver' },
-    { type: 'user', name: 'Wilson', age: 23, occupation: 'Ball' },
-    { type: 'admin', name: 'Agent Smith', age: 23, role: 'Anti-virus engineer' }
+const members = [
+    { type: 'client', name: 'Toochukwu John', age: 28, profession: 'Engineer' },
+    { type: 'manager', name: 'Obi Paul', age: 40, department: 'HR' },
+    { type: 'client', name: 'Onu Princeley', age: 22, profession: 'Designer' },
+    { type: 'manager', name: 'Idenyi Peter', age: 35, department: 'Marketing' },
+    { type: 'client', name: 'Inegbu Vivian', age: 22, profession: 'Developer' },
+    { type: 'manager', name: 'Odanwu Emmanuel', age: 22, department: 'Security' }
 ];
-function logPerson(person) {
-    console.log(` - ${person.name}, ${person.age}, ${person.type === 'admin' ? person.role : person.occupation}`);
+function displayMember(member) {
+    console.log(` - ${member.name}, ${member.age}, ${member.type === 'manager' ? member.department : member.profession}`);
 }
-// Function with improved typings
-function filterPersons(persons, personType, criteria) {
-    return persons
-        .filter((person) => person.type === personType)
-        .filter((person) => Object.entries(criteria).every(([key, value]) => person[key] === value));
+function refineMembers(group, category, filters) {
+    return group
+        .filter((person) => person.type === category)
+        .filter((person) => Object.entries(filters).every(([key, value]) => person[key] === value));
 }
-exports.usersOfAge23 = filterPersons(exports.persons, 'user', { age: 23 });
-exports.adminsOfAge23 = filterPersons(exports.persons, 'admin', { age: 23 });
-console.log('Users of age 23:');
-exports.usersOfAge23.forEach(logPerson);
+const clientsAged22 = refineMembers(members, 'client', { age: 22 });
+const managersAged22 = refineMembers(members, 'manager', { age: 22 });
+console.log('Clients aged 22:');
+clientsAged22.forEach(displayMember);
 console.log();
-console.log('Admins of age 23:');
-exports.adminsOfAge23.forEach(logPerson);
+console.log('Managers aged 22:');
+managersAged22.forEach(displayMember);

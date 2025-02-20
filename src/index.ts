@@ -1,59 +1,58 @@
-interface User {
-    type: 'user';
+interface Member {
     name: string;
     age: number;
-    occupation: string;
 }
 
-interface Admin {
-    type: 'admin';
-    name: string;
-    age: number;
-    role: string;
+interface Client extends Member {
+    type: 'client';
+    profession: string;
 }
 
-export type Person = User | Admin;
+interface Manager extends Member {
+    type: 'manager';
+    department: string;
+}
 
-export const persons: Person[] = [
-    { type: 'user', name: 'Max Mustermann', age: 25, occupation: 'Chimney sweep' },
-    { type: 'admin', name: 'Jane Doe', age: 32, role: 'Administrator' },
-    { type: 'user', name: 'Kate Müller', age: 23, occupation: 'Astronaut' },
-    { type: 'admin', name: 'Bruce Willis', age: 64, role: 'World saver' },
-    { type: 'user', name: 'Wilson', age: 23, occupation: 'Ball' },
-    { type: 'admin', name: 'Agent Smith', age: 23, role: 'Anti-virus engineer' }
+type Individual = Client | Manager;
+
+const members: Individual[] = [
+    { type: 'client', name: 'Toochukwu John', age: 28, profession: 'Engineer' },
+    { type: 'manager', name: 'Obi Paul', age: 40, department: 'HR' },
+    { type: 'client', name: 'Onu Princeley', age: 22, profession: 'Designer' },
+    { type: 'manager', name: 'Idenyi Peter', age: 35, department: 'Marketing' },
+    { type: 'client', name: 'Inegbu Vivian', age: 22, profession: 'Developer' },
+    { type: 'manager', name: 'Odanwu Emmanuel', age: 22, department: 'Security' }
 ];
 
-export function logPerson(person: Person) {
+function displayMember(member: Individual): void {
     console.log(
-        ` - ${person.name}, ${person.age}, ${person.type === 'admin' ? person.role : person.occupation}`
+        ` - ${member.name}, ${member.age}, ${member.type === 'manager' ? member.department : member.profession}`
     );
 }
 
+type FilterCriteria<T> = Partial<Omit<T, 'type'>>;
 
-type FilterCriteria<T extends Person> = Partial<Omit<T, 'type'>>;
-
-
-export function filterPersons<T extends Person>(
-    persons: Person[],
-    personType: T['type'],
-    criteria: FilterCriteria<T>
+function refineMembers<T extends Individual>(
+    group: Individual[],
+    category: T['type'],
+    filters: FilterCriteria<T>
 ): T[] {
-    return persons
-        .filter((person): person is T => person.type === personType)
-        .filter((person) =>
-            Object.entries(criteria).every(([key, value]) =>
-                (person as any)[key] === value
+    return group
+        .filter((person): person is T => person.type === category)
+        .filter((person) => 
+            Object.entries(filters).every(([key, value]) => 
+                person[key as keyof T] === value
             )
         );
 }
 
-export const usersOfAge23 = filterPersons(persons, 'user', { age: 23 });
-export const adminsOfAge23 = filterPersons(persons, 'admin', { age: 23 });
+const clientsAged22 = refineMembers<Client>(members, 'client', { age: 22 });
+const managersAged22 = refineMembers<Manager>(members, 'manager', { age: 22 });
 
-console.log('Users of age 23:');
-usersOfAge23.forEach(logPerson);
+console.log('Clients aged 22:');
+clientsAged22.forEach(displayMember);
 
 console.log();
 
-console.log('Admins of age 23:');
-adminsOfAge23.forEach(logPerson);
+console.log('Managers aged 22:');
+managersAged22.forEach(displayMember);

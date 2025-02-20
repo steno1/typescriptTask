@@ -1,37 +1,53 @@
 # 🚀 TypeScript User Filtering Task
 
-This project implements a **TypeScript function** that filters users and admins based on their type and age.
+This project implements a **TypeScript function** that filters clients and managers based on their type and age.
 
 ## 📂 Project Structure
-typescript-filter-task/ │── src/ # Source code │ ├── index.ts # Main TypeScript file │── dist/ # Compiled JavaScript files (ignored in Git) │── tsconfig.json # TypeScript configuration │── package.json # Project dependencies │── README.md # Project documentation │── .gitignore # Ignored files
-
+```
+typescript-filter-task/
+│── src/             # Source code
+│   ├── index.ts     # Main TypeScript file
+│── dist/            # Compiled JavaScript files (ignored in Git)
+│── tsconfig.json    # TypeScript configuration
+│── package.json     # Project dependencies
+│── README.md        # Project documentation
+│── .gitignore       # Ignored files
+```
 
 ## 🔧 Setup & Installation
 ### 1️⃣ Clone the Repository  
 ```sh
 git clone https://github.com/steno1/typescriptTask.git
 cd typescript-filter-task
-2️⃣ Install Dependencies
+```
 
+### 2️⃣ Install Dependencies
+```sh
 
 npm install
-3️⃣ Compile TypeScript
+```
+### 3️⃣ Compile TypeScript
 
+```sh
 npx tsc
-4️⃣ Run the Code
+```
 
+### 4️⃣ Run the Code
+```sh
 node dist/index.js
+```
 
-📝 Example Output
+## 📝 Example Output
+```
+Clients of age 22:
+ - Onu Princeley, 22, Designer
+ - Inegbu Vivian, 22, Developer
 
-Users of age 23:
- - Kate Müller, 23, Astronaut
- - Wilson, 23, Ball
+Managers of age 22:
+ - Odanwu Emmanuel, 22, Security
+```
 
-Admins of age 23:
- - Agent Smith, 23, Anti-virus engineer
-📌 Features
-✅ TypeScript
-✅ Filtering logic
-✅ CLI Output
-
+## 📌 Features
+✅ TypeScript-based filtering logic  
+✅ Supports clients and managers filtering  
+✅ CLI Output for better readability
