@@ -25,21 +25,23 @@ const members: Individual[] = [
 ];
 
 function displayMember(member: Individual): void {
-    console.log(
-        ` - ${member.name}, ${member.age}, ${member.type === 'manager' ? member.department : member.profession}`
-    );
+    const details = member.type === 'manager' 
+        ? `🛠️ Department: ${member.department}` 
+        : `💼 Profession: ${member.profession}`;
+    
+    console.log(`👤 ${member.name} | Age: ${member.age} | ${details}`);
 }
 
 type FilterCriteria<T> = Partial<Omit<T, 'type'>>;
 
 function refineMembers<T extends Individual>(
-    group: Individual[],
-    category: T['type'],
+    group: Individual[], 
+    category: T['type'], 
     filters: FilterCriteria<T>
 ): T[] {
     return group
         .filter((person): person is T => person.type === category)
-        .filter((person) => 
+        .filter(person => 
             Object.entries(filters).every(([key, value]) => 
                 person[key as keyof T] === value
             )
@@ -49,10 +51,9 @@ function refineMembers<T extends Individual>(
 const clientsAged22 = refineMembers<Client>(members, 'client', { age: 22 });
 const managersAged22 = refineMembers<Manager>(members, 'manager', { age: 22 });
 
-console.log('Clients aged 22:');
+console.log('🔍 Clients aged 22:');
 clientsAged22.forEach(displayMember);
+console.log('\n');
 
-console.log();
-
-console.log('Managers aged 22:');
+console.log('🔍 Managers aged 22:');
 managersAged22.forEach(displayMember);
